@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/veremchukvv/render"
@@ -58,10 +59,33 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 	token := r.Form.Get("token")
 	usr := UU.GetByToken(token)
 	if usr == nil {
-		render.RenderJSON
+		render.RenderJSONErr(w, "Пользователь не найден", http.StatusNotFound)
+		return
 	}
+	render.RenderJSON(w, usr)
+	return
 }
 
 func userPatchHandler(w http.ResponseWriter, r *http.Request) {
-
+	r.ParseForm()
+	idStr := r.FormValue("id")
+	isPaidStr := r.FormValue("is_paid")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		render.RenderJSONErr(w, "Invalid 'id': "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	usr := UU.GetByID(id)
+	isPaid, err := strconv.ParseBool(isPaidStr)
+	if err != nil {
+		render.RenderJSONErr(w, "Invalid 'is_paid': "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	if usr == nil {
+		render.RenderJSONErr(w, "Пользователь не найден. ID: "+idStr, http.StatusNotFound)
+		return
+	}
+	usr.IsPaid = isPaid
+	render.RenderJSON(w, usr)
+	return
 }
