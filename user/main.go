@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/veremchukvv/go_web_cinema/pkg/render"
+	"github.com/veremchukvv/render"
 )
 
 //Port for port assignment
