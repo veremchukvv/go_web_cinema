@@ -7,6 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/veremchukvv/render"
+	"github.com/veremchukvv/requester"
 )
 
 var cfg = struct {
