@@ -1,11 +1,11 @@
 package main
 
 import (
-	"go_web_cinema/pkg/render"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
+	. "github.com/veremchukvv/go_web_cinema/pkg/render"
 )
 
 //Port for port assignment

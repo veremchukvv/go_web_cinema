@@ -1,0 +1,4 @@
+github.com/gorilla/mux v1.7.4 h1:VuZ8uybHlWmqV03+zRzdwKL4tUnIp1MAQtp1mIFE1bc=
+github.com/gorilla/mux v1.7.4/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/veremchukvv/go_web_cinema v0.0.0-20200817121903-c5526122f01b h1:OkiPa4oKvk5k3bm3xW1G2NTzjh86RtqXDJDDhEZbOe4=
+github.com/veremchukvv/go_web_cinema/pkg v0.0.0-20200817121903-c5526122f01b h1:+u4HLPshsw9QfLpsN1T+N3xSxz/+vWUwpnRhWZm8mXo=
