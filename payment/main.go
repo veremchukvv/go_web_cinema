@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"net/url"
 
 	"github.com/gorilla/mux"
 	"github.com/veremchukvv/render"
@@ -31,4 +32,65 @@ func main() {
 	}
 	log.Printf("Starting on port %s", cfg.Port)
 	log.Fatal(http.ListenAndServe(":"+cfg.Port, r))
+}
+
+func checkoutFormHandler(w http.ResponseWriter, r *http.Request) {
+	uid := r.FormValue("uid")
+	if uid == "" {
+		render.RenderTemplate(w, "msg", Msg{
+			"Не указан идентификатор пользователя",
+			cfg.WebAddr,
+		})
+		return
+	}
+	render.RenderTemplate(w, "payform", struct{ Uid string }{uid})
+}
+
+type Msg struct {
+	Msg     string
+	BackURL string
+}
+
+func checkoutHandler(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	uid := r.FormValue("uid")
+
+	if !makePayment(
+		r.FormValue("pan"),
+		r.FormValue("date"),
+		r.FormValue("cvc"),
+	) {
+		render.RenderTemplate(w, "msg", Msg{
+			"неверные платёжные данные",
+			"/checkout?uid=" + uid,
+		})
+	}
+	err := requester.PatchJSON(
+		cfg.UserAddr+"/user",
+		url.Values{
+			"id":      []string{uid},
+			"is_paid": []string{"true"},
+		},
+		nil,
+	)
+	if err != nil {
+		log.Printf("Payment error %v", err)
+		render.RenderTemplate(w, "msg", Msg{
+			"Во время проведения платежа произошла ошибка",
+			"/checkout?uid=" + uid,
+		})
+		return
+	}
+	render.RenderTemplate(w, "msg", Msg{
+		"Платёж успешно совершён",
+		cfg.WebAddr,
+	})
+	return
+}
+
+func makePayment(pan, date, cvc string) bool {
+	if pan != "4444444444444444" && date != "12/12" && cvc != "123" {
+		return false
+	}
+	return true
 }
