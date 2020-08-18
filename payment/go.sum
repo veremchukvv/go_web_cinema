@@ -6,3 +6,7 @@ github.com/veremchukvv/render v1.0.1 h1:ObvlXgBcn5jfwVQcLK0Btv1DbiyOJJUS3fc4iXCm
 github.com/veremchukvv/render v1.0.1/go.mod h1:PbG4vCtwFnzECqwuUbTOr03eqngnXBCPQUxMuhCWWgk=
 github.com/veremchukvv/requester v1.0.0 h1:T8d4cIhDMxKmNqgVPLc97bLfdQfvOyMBfBvn26lwytg=
 github.com/veremchukvv/requester v1.0.0/go.mod h1:ACWkl7XPueyrQyyVgV1A6RL7Bh7tV2g8l7oZwKprbYQ=
+github.com/veremchukvv/requester v1.0.1 h1:Mwokx5mIJFiyYfvXxNYAxdfcEuuWmZ7iFvZwZTb6GkU=
+github.com/veremchukvv/requester v1.0.1/go.mod h1:ACWkl7XPueyrQyyVgV1A6RL7Bh7tV2g8l7oZwKprbYQ=
+github.com/veremchukvv/requester v1.0.2 h1:Lwef4LJO+ZqqGfB6/m2SnVatSz8Phe8Af+V34VUbnyk=
+github.com/veremchukvv/requester v1.0.2/go.mod h1:ACWkl7XPueyrQyyVgV1A6RL7Bh7tV2g8l7oZwKprbYQ=
